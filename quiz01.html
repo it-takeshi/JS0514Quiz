@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>quizアプリ01</title>
+  <style>
+    .header,
+    .footer {
+      width: 100%;
+      background: navy;
+      color: whitesmoke;
+      border: 1px solod #000;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    main {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    form ul {
+      list-style: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <h1>クイズアプリ01（単数）</h1>
+  </header>
+  <main>
+    <p id="question"></p>
+    <form action="">
+      <ul>
+        <li>
+          <input type="radio" name="choices" id="choice00" value="0">
+          <label for="choice00">大量のコード書く</label>
+        </li>
+        <li>
+          <input type="radio" name="choices" id="choice01" value="1">
+          <label for="choice01">自分で調べる</label>
+        </li>
+        <li>
+          <input type="radio" name="choices" id="choice02" value="2">
+          <label for="choice02">質問する</label>
+        </li>
+      </ul>
+    </form>
+  </main>
+  <footer class="footer">
+    <h1 id="result">結果は？</h1>
+  </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+  
+  const question ='次の中で何が一番重要ですか？';
+  $('#question').html(question);
+
+  const correctAnswer =0;
+
+  $('input[name="choices"]').on('click',function (e) {
+console.log(e.target.value);
+if(e.target.value==correctAnswer){
+  alert('ok');
+  $('#result').text('正解');
+}else{
+  alert('NG');
+  $('#result').text('不正解');
+}
+    });
+
+
+
+//   const correctAnswer = 0;
+
+// $('input[name="choices"]').on('click',function(e){
+//   if(e.target.value==correctAnswer){
+//     // alert('OK');
+//     $('#result').html('正解!');
+//   }else{
+//     // alert('NG');
+//     $('#result').html('不正解');
+//   }
+// });
+
+
+  </script>
+</body>
+
+</html>

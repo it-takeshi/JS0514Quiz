@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>深層心理診断</title>
+  <style>
+
+    *{margin:0; padding: 0; list-style: none;}
+
+    /* #questionは h1のこと */
+    #question{
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      color: #fff;
+      font-family: serif;
+    }
+
+    ul{
+      width: 600px;
+      margin:0 auto;
+    }
+    li{
+    text-align: center;
+    background-color: #eee;
+    font-weight: bold;
+    font-size: 25px;
+    padding:10px 0;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-family: serif;
+    
+  }
+/* 
+    main {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    } */ 
+
+    /* form ul {
+      list-style: none;
+    } */
+    .point{
+      margin-top: 100px;
+      display: none;
+      text-align: center;
+      font-size: 50px;
+      font-weight: bold;
+      color:red;
+    }
+    progress{
+      height: 40px;
+      width: 400px;
+      display: block;
+      margin:0 auto 40px;
+    }
+    .last_time{
+    font-size: 20px;
+
+    }
+
+    #kekka{
+      color: red;
+    }
+    .line{
+      width: 0%;
+      height: 1px;
+      background-color: #fff;
+      position: fixed;
+      top: 50%;
+      z-index: 3;
+    }
+    .up{
+      width: 100%;
+      height: 50%;
+      background-color: #000;
+      position: fixed;
+      z-index: 2;
+    }
+    .down{
+      width: 100%;
+      height: 50%;
+      background-color: #000;
+      position: fixed;
+      bottom: 0;
+      z-index: 2;
+    }
+    .img{
+      width:100%;
+      height: 100%;
+      display: none;
+      z-index: 1;  
+    }
+    .img img{
+      width: 100%;  
+    }
+    .img2{
+      display: none;
+    }
+
+    .headTitle{
+      position: absolute;
+      top:20%;
+      left:15%;
+      transform:translate(-50%,-50%);
+      color: #fff;
+      font-size: 40px;
+      border: 2px,solid;
+      padding: 50px;
+      font-family: serif;
+    }
+  #start_btn {
+    position: fixed;
+    top:320px;
+    left:670px;
+    background-color:blue;
+    padding: 5px 10px;
+    display: inline-block;
+    border-radius: 5px;
+    opacity: 0.8;
+    z-index: 1;
+    cursor: pointer;
+}
+#start_btn:hover {
+    opacity: 1.0;
+}
+#start_btn:active {
+    background-color: tomato;
+    color: white;
+}
+
+.main_wrapper{
+  background-size: cover;
+  background: url(../white.pelsona.jpg)
+  
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="head_wrapper">
+  <div class="up"></div>
+  <div class="down"></div>
+  <div class="line"></div>
+  <div class="img">
+    <img src="../istockphoto-1250113107-612x612.jpg" alt="">
+    <p class="headTitle"> スペルマ<br> 貴方の裏の顔<br>ブラック度診断</p>
+    <div><a id="start_btn"></a></div>
+  </div>
+</div>
+  
+<div class="main_wrapper">
+  <h1 id=question></h1>
+      <progress max="100" value="0"></progress>
+<ul></ul> 
+      <div class="point"><span data-point-num></span></div>
+      <div class="last_time" >前回の結果<span id="kekka"></span></div>
+    </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+// chapter00
+$('#start_btn').click(function () {
+        $('.head_wrapper').hide();
+        $('.main_wrapper').show();
+});
+
+
+    $('.line').animate({"width":"100%"},1500,function () { 
+    $('.line').css("right",0);   
+      $('.line').animate({"width":"0%"},function(){
+        $('.up').animate({"height":"0%"});
+        $('.down').animate({"height":"0%"},1000,function(){
+          $('.img').fadeIn("slow");
+          $('.headTitle').fadeIn("slow");
+
+        });
+      });
+    })
+
+    $(function () {
+      let count =0;
+    let point = 0;
+      const questions=[
+        {
+            question:'第1問   道を歩いていたら500円硬貨が落ちていた。どうする？',
+            answer:2, 
+            choice:['1.人目がなければポケットへ','2.とりあえず踏んづける','3.無視する'
+          ]
+        },
+        {
+            question:'第2問 メールや電話をわざと無視することがある？', 
+            answer:1, 
+            choice:['1.はい','2.相手次第','3.いいえ'
+          ]
+        },
+        {
+            question:'第3問  友達のズボンのチャックがあいてる！ こんなときは……', 
+            answer:0,
+            choice:['1.いつ気づくか観察する','2.見て見ぬふりをする','3.教えてあげる'
+          ]
+        },
+        {
+            question:'第4問  ものごとがうまくいって舞い上がっている人を見ると……',
+            answer:2, 
+            choice:['1.冷めた目で見てしまう','2.そのうちうまくいかなくなるのにと•・思う','3.まあ良かったねと思う'
+          ]
+        },
+        {
+            question:'第5問  .正直、人の失敗や揉め事がおもしろいと感じる',
+            answer:2, 
+            choice:['1.そう思う','2.時々思う','3.思わない'
+          ]
+        },
+        {
+            question:'第6問  腹黒いと自分で感じることがある',
+            answer:2, 
+            choice:['1.かなり思う','2.たまにある','3.腹黒くはないが姑息だ'
+          ]
+        },
+      ];
+
+      if(localStorage.getItem('shindan')==null){
+      $('#kekka').text(記録はありません);
+      }else{
+      $('#kekka').text(localStorage.getItem('shindan'));
+
+      }
+
+        // h1はid=questionのこと#questionと同じ
+
+        function render(count){
+          $('li').remove();
+          $('#question').text(questions[count].question);
+          // $('#choice0_label').text(choice[count][0]);
+          // $('#choice0_label').text(choice[count][1]);
+          // $('#choice0_label').text(choice[count][2]);
+
+          questions[count]['choice'].forEach(function(text)  {
+          const li =`<li>${text}</li>`;
+          $('ul').append(li);
+          });      
+        }
+        render(0);
+
+        function pointGet(li_index) {
+          switch(li_index){
+            case 0:
+            return 3;
+            break;
+            case 1:
+            return 2;
+            break;
+            case 2:
+            return 1;
+            break;
+          }
+        }
+
+        function point_text(point){
+          let text =`貴方は神様レベル! ブラック度10％ `;
+          if(point<=8){
+            text='品行方正！ブラック度20％'
+          }
+          if(point>=9){
+            text='貴方はなんとか健全です ブラック度40％'
+          }
+          if(point>10){
+            text='意外に闇が深い! ブラック度は60％'
+          }
+          if(point>12){
+            text='貴方は黒焦げです! ブラック度80％'
+          }
+          if(point>=16){
+            text ='貴方は黒黒と光り輝く腹黒人間! ブラック度100％!'
+          }
+          return text;
+        }
+        
+        $('body').on('click','li',function() {
+          const li_index =$('li').index(this);
+          point += pointGet(li_index);
+          console.log(point);
+          if(count<questions.length-1){
+            count++;
+          render(count);
+          $('progress').val(100/(questions.length/count));
+          }else{
+            $('[data-point-num]').text(point_text(point));
+            localStorage.setItem('shindan',point_text(point));
+            $('ul,h1').hide();
+            $('.point').fadeIn();
+            $('progress').val(100);
+            $('.img').fadeIn("slow");
+            console.log('end');
+          }
+          
+        });
+    
+      });
+
+</script>
+</body>
+
+</html>
+
+<!-- 
+<li><input type="radio" name="choices" id="choice0" value="0">
+  <label for="choice0" id="choice0_label"></label>
+</li>
+<li><input type="radio" name="choices" id="choice1" value="0">
+<label for="choice1" id="choice1_label"></label>
+</li>
+<li><input type="radio" name="choices" id="choice2" value="0">
+<label for="choice2" id="choice2_label"></label>
+</li> -->

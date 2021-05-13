@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>配列の練習</title>
+</head>
+
+<body>
+<h1>配列の練習</h1>
+<p>検証画面で確認！！</p>
+<p id="view">ループ処理結果</p>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+      // 配列の定義
+      // const list01=['月','火','水','木','金','土','日'];
+      // console.log(list01)
+      // 配列の要素を出力
+      // 配列の長さ
+// console.log(list01.length);
+      const list02 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];  
+console.log(list02);
+ // 先頭に追加
+list02.unshift(0);
+list02.push(11);
+list02.reverse();
+
+
+
+
+      // 末尾に追加
+
+      // 先頭を削除
+
+      // 末尾を削除
+
+      // 反転
+
+
+let str ='';
+
+for(let i =0; 0<10; i++){
+str+=`繰り返し処理;${i} 回目`;
+}
+$('#view').html(str);
+</script>
+</body>
+
+</html>

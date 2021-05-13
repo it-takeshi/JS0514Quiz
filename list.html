@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>配列と繰り返しの練習</title>
+</head>
+
+<body>
+  <select name="" id="view"></select>
+  <h1>配列と繰り返しの練習</h1>
+  <div id="echo"></div>
+
+  <select id="view1"></select>
+  <select id="view2"></select>
+<select id="view3"></select>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+
+
+// let str ='';
+
+// for(let i =1970;i<2030;i++){
+//   str+=`<option>${i}</option>`;
+// }
+// $('#view').html(str);
+
+
+// const ar =['A','B','C','D','E','F','G','H','I','J'];
+// let str ='';
+// for(let i =0;i<ar.length; i++){
+// str +=`配列:${ar[i]}<br>`;
+// }
+// $('#view').html(str);
+
+
+// 配列を順番に画面表示してみよう
+
+function selectcreate (start,end){
+let str='';
+for(let i=start;i<end;i++){
+  str+=`<option>${i}</option>`;
+}
+return str;
+}
+const year = selectcreate(1970,2028);
+const month= selectcreate(1,13);
+const date = selectcreate(1,32);
+
+$('#view1').html(year);
+$('#view2').html(month);
+$('#view3').html(date);
+
+
+    // 配列を用いて<select>の<option>を生成してみよう
+    // const years = [1901, 2000];
+    // const yeartags= [];
+    // for(let i =years[0];i<=years[1];i++){
+    //   yeartags.push('<Option>'+ i +'<option>');
+    // }
+    // const month = [1, 12];
+    // const monthtags= [];
+    // for(let i =month[0];i<=month[1];i++){
+    //   monthtags.push('<Option>'+ i +'<option>');
+    // }
+    // const date = [1, 31];
+    // const datetags= [];
+    // for(let i =month[0];i<=date[1];i++){
+    //   datetags.push('<Option>'+ i +'<option>');
+    // }
+    // $('#years').html(yeartags);
+    // $('#month').html(monthtags);
+    // $('#date').html(datetags);
+
+
+
+  </script>
+</body>
+
+</html>
